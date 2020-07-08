@@ -1,0 +1,12 @@
+#
+# Autor: Davi Garcia <dvercill@redhat.com>
+# Data: 09-07-2020
+#
+# Dummy playbook to test integration with GitHub.
+#
+
+- name: Playbook de Hello, World!
+  hosts: all
+  tasks:
+  - name: Teste de conectividade
+    ping:

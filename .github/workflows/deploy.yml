@@ -1,0 +1,23 @@
+name: Deploy
+
+on:
+- push
+- pull_request
+
+jobs:
+  application:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Git Checkout
+      uses: actions/checkout@v2
+
+    - name: Run Ansible playbook
+      uses: dawidd6/action-ansible-playbook@v2
+      with:
+        playbook: main.yml
+        directory: ./infra-src/
+        key: ${{secrets.SSH_PRIVATE_KEY}}
+        inventory: ${{secrets.INVENTORY}}
+        options: |
+          --verbose
+    

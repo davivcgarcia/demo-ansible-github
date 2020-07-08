@@ -1,0 +1,3 @@
+[submodule "app-src/youtube-chapter-extractor"]
+	path = app-src/youtube-chapter-extractor
+	url = git@github.com:davivcgarcia/youtube-chapter-extractor.git
