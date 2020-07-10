@@ -3,6 +3,12 @@ Demonstração de Ansible com GitHub Actions para o Código Fonte TV (YouTube)
 
 ## Execução Manual
 
+Como esse repositório faz uso de Git Submodules, ao clonar você use:
+
+```bash
+git clone https://github.com/davivcgarcia/demo-codigofonte.git --recursive
+```
+
 ### Aplicação (api + public)
 
 Para executar localmente o componente de backend (`api`), faça:
