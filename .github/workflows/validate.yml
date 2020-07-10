@@ -14,12 +14,16 @@ jobs:
       with:
         submodules: true
 
-    - name: Setup Deno environment
+    - name: (API) Setup Deno environment
       uses: denolib/setup-deno@v2
       with:
         deno-version: v1.x
 
-    - name: Execute Deno Tests
+    - name: (API) Lint Deno code conventions
+      run: deno fmt --check
+      working-directory: app-src/youtube-chapter-extractor/api
+
+    - name: (API) Execute Deno tests
       run: deno test --allow-all
       working-directory: app-src/youtube-chapter-extractor/api
 
@@ -29,7 +33,7 @@ jobs:
     - name: Git Checkout
       uses: actions/checkout@v2
 
-    - name: Lint Ansible (infra code)
+    - name: Lint Ansible code
       uses: ansible/ansible-lint-action@master
       with:
         targets: |
