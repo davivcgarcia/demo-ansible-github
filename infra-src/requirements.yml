@@ -5,11 +5,3 @@
 # Esse arquivo lista as dependências (Role/Collections) dos playbooks.
 #
 
-[defaults]
-
-# Configurações que melhoram a experiência no terminal.
-stdout_callback = yaml
-bin_ansible_callbacks = True
-
-# Configuração para hospedar os Collections juntos do projeto.
-collections_paths = ./collections
