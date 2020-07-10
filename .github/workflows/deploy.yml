@@ -1,11 +1,12 @@
-name: Deploy
+name: Continous Deployment (CD)
 
 on:
-- push
-- pull_request
+  push:
+    branches:
+    - master
 
 jobs:
-  application:
+   ansible:
     runs-on: ubuntu-latest
     steps:
     - name: Git Checkout
