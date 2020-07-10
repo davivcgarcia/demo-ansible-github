@@ -48,5 +48,5 @@ E depois execute o playbook de deployment:
 
 ```bash
 cd infra-src
-ansible-playbook -i <inventário> main.yml
+ansible-playbook -i inventory main.yml
 ```
