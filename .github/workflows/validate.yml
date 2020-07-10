@@ -1,10 +1,12 @@
-name: Validate
+name: Continous Integration (CI)
 
 on:
   push:
-    branches: [ master ]
+    branches-ignore:
+    - master
   pull_request:
-    branches: [ master ]
+    branches:
+    - master
 
 jobs:
   application:
