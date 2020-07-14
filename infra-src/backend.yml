@@ -1,0 +1,79 @@
+#
+# Autor: Davi Garcia <dvercill@redhat.com>
+# Data: 14-07-2020
+#
+# Playbook para configurar e implantar o serviço de backend
+#
+
+- name: Deploy application backend service
+  hosts: backend
+  become: yes
+  gather_facts: no
+  vars:
+    deno_version: v1.2.0
+    git_repo: https://github.com/davivcgarcia/demo-codigofonte.git
+    git_context: app-src/youtube-chapter-extractor/api/
+    git_dir: /tmp/git-backend
+  tasks:
+  - name: Installing backend dependencies (packages)
+    package:
+      name:
+      - git
+      - unzip
+      state: present
+  - name: Installing Deno runtime (binary)
+    unarchive:
+      src: "https://github.com/denoland/deno/releases/download/{{ deno_version }}/deno-x86_64-unknown-linux-gnu.zip"
+      dest: /usr/local/bin
+      remote_src: yes
+    notify:
+    - Restart backend service
+  - name: Checkout backend content from Git repository
+    git:
+      repo: "{{ git_repo }}"
+      dest: "{{ git_dir }}"
+      version: master
+    register: checkout
+  - name: Copy backend artifacts to deployment directory
+    copy:
+      src: "{{ git_dir }}/{{ git_context }}"
+      dest: /srv/backend
+      remote_src: yes
+    when: checkout.changed
+    notify:
+    - Restart backend service
+  - name: Configure the backend service for production
+    copy:
+      content: |
+        HOST=0.0.0.0
+        PORT=8080
+      dest: /srv/backend/.env
+  - name: Configure systemd as supervisor for backend service
+    copy:
+      content: |
+        [Unit]
+        Description=Deno Backend Service
+
+        [Service]
+        WorkingDirectory=/srv/backend
+        ExecStart=/usr/local/bin/deno run --allow-read --allow-net app.ts
+        Restart=always
+
+        [Install]
+        WantedBy=multi-user.target
+      dest: /etc/systemd/system/deno-backend.service
+      owner: root
+      group: root
+    notify:
+      - Restart backend service
+  - name: Backend service must be started on boot
+    systemd:
+      name: deno-backend.service
+      enabled: yes
+      daemon_reload: yes
+  handlers:
+  - name: Restart backend service
+    systemd:
+      name: deno-backend.service
+      state: restarted
+      daemon_reload: yes

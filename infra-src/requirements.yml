@@ -5,3 +5,6 @@
 # Esse arquivo lista as dependências (Role/Collections) dos playbooks.
 #
 
+roles:
+  - name: nginxinc.nginx
+    version: 0.14.0

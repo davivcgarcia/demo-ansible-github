@@ -1,12 +1,9 @@
 #
 # Autor: Davi Garcia <dvercill@redhat.com>
-# Data: 09-07-2020
+# Data: 14-07-2020
 #
-# Dummy playbook to test integration with GitHub.
+# Playbook Ansible de entrada (entrypoint)
 #
 
-- name: Playbook de Hello, World!
-  hosts: all
-  tasks:
-  - name: Teste de conectividade
-    ping:
+- import_playbook: frontend.yml
+- import_playbook: backend.yml

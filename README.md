@@ -1,15 +1,16 @@
-# demo-codigofonte
-Demonstração de Ansible com GitHub Actions para o Código Fonte TV (YouTube)
+# Demonstração para Código Fonte TV
 
-## Execução Manual
+Esse reposiório contém os artefatos usados na demonstração de Ansible Engine (Ansible CLI) como ferramenta de CD complementar ao Ansible Tower (AWX) e GitHub Actions para o vídeo da Código Fonte TV (YouTube).
 
-Como esse repositório faz uso de Git Submodules, ao clonar você use:
+## Instruções
+
+Como esse repositório faz uso de Git Submodules, ao clonar você precisa usar:
 
 ```bash
 git clone https://github.com/davivcgarcia/demo-codigofonte.git --recursive
 ```
 
-### Aplicação (api + public)
+### Executando a Aplicação (api + public)
 
 Para executar localmente o componente de backend (`api`), faça:
 
@@ -27,20 +28,20 @@ firefox index.html
 
 Ao abrir o navegador, use o link do video abaixo como exemplo:
 
-https://www.youtube.com/watch?v=BvyQ70PVI4s
+<https://www.youtube.com/watch?v=BvyQ70PVI4s>
 
-### Infraestrutura
+### Executando Automação Ansible
 
 Para execução local do Ansible, primeiro crie seu inventário, seguindo o modelo abaixo:
 
 ```bash
 cd infra-src
 cat <<<EOF > inventory
-[fronend]
-servidor1
+[frontend]
+servidor  ansible_host=192.168.2.30 ansible_user=usuario
 
 [backend]
-servidor1
+servidor  ansible_host=192.168.2.30 ansible_user=usuario
 EOF
 ```
 
