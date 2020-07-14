@@ -20,7 +20,7 @@
   - name: Installing Git command-line interface
     package:
       name: git
-      state: latest
+      state: present
   - name: Cloning remote Git repository
     git:
       repo: 'https://github.com/davivcgarcia/demo-codigofonte.git'
