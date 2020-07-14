@@ -19,6 +19,3 @@ jobs:
         directory: ./infra-src/
         key: ${{secrets.SSH_PRIVATE_KEY}}
         inventory: ${{secrets.INVENTORY}}
-        options: |
-          --verbose
-    
