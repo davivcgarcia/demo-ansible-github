@@ -41,3 +41,4 @@ jobs:
         override-deps: |
           ansible==2.9
           ansible-lint==4.2
+        args: "-c infra-src/.ansible-lint"
