@@ -1,34 +1,9 @@
 #
 # Autor: Davi Garcia <dvercill@redhat.com>
-# Data: 09-07-2020
+# Data: 14-07-2020
 #
-# Dummy playbook to test integration with GitHub.
+# Playbook Ansible de entrada (entrypoint)
 #
 
-- name: Configuring frontend server
-  hosts: frontend
-  become: yes
-  roles:
-  - role: nginxinc.nginx
-    vars:
-      nginx_install: yes
-      nginx_enable: yes
-      nginx_start: yes
-      nginx_selinux: yes
-      nginx_selinux_enforcing: yes
-  tasks:
-  - name: Installing Git command-line interface
-    package:
-      name: git
-      state: present
-  - name: Cloning remote Git repository
-    git:
-      repo: 'https://github.com/davivcgarcia/demo-codigofonte.git'
-      dest: /opt/git/demo-codigofonte
-      version: master
-  - name: Copying content to destination folder
-    copy:
-      remote_src: yes
-      src: /opt/demo-codigofonte/app-src/youtube-chapter-extractor/public/
-      dest: /usr/share/nginx/html/
-      force: yes
+- import_playbook: frontend.yml
+- import_playbook: backend.yml
