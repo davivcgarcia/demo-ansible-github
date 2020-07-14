@@ -1,0 +1,12 @@
+#
+# Autor: Davi Garcia <dvercill@redhat.com>
+# Data: 14-07-2020
+#
+# Esse arquivo modifica as configurações de execução padrão do ansible-lint
+# A regra abaixo dispara um error falso-positivo, conforme discussão abaixo:
+#
+#   https://github.com/ansible/ansible-lint/issues/419
+#
+
+skip_list:
+  - '503'
