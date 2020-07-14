@@ -1,0 +1,55 @@
+#
+# Autor: Davi Garcia <dvercill@redhat.com>
+# Data: 14-07-2020
+#
+# Playbook de remoção dos componentes de backend/frontend
+#
+
+- name: Environment Clean-up
+  hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: Stop services
+    service:
+      name: "{{ item }}"
+      state: stopped
+      enabled: no
+    with_items:
+    - deno-backend
+    - nginx
+    ignore_errors: yes
+  - name: Uninstall dependencies (packages)
+    package:
+      name:
+      - nginx
+      - git
+      - unzip
+      state: absent
+  - name: Uninstall dependencies (binaries)
+    file:
+      path: /usr/local/bin/deno
+      state: absent
+  - name: Remove leftovers from nginx
+    file:
+      path: /etc/nginx
+      state: absent
+  - name: Remove local Git checkouts
+    file:
+      path: "{{ item }}"
+      state: absent
+    with_items:
+    - /tmp/git-frontend
+    - /tmp/git-backend
+  - name: Remove custom systemd service file
+    file:
+      path: /etc/systemd/system/deno-backend.service
+      state: absent
+  - name: Remove deployment directories
+    file:
+      path: "{{ item }}"
+      state: absent
+    with_items:
+    - /srv/frontend
+    - /srv/backend
+
