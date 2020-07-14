@@ -25,6 +25,7 @@
     git:
       repo: 'https://github.com/davivcgarcia/demo-codigofonte.git'
       dest: /opt/git/demo-codigofonte
+      version: master
   - name: Copying content to destination folder
     copy:
       remote_src: yes
