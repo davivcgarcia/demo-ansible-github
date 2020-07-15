@@ -1,4 +1,11 @@
 ---
+#
+# Autor: Davi Garcia <dvercill@redhat.com>
+# Data: 15-07-2020
+#
+# Tarefas de implantação do backend
+#
+
 - name: Installing backend dependencies (packages)
   package:
     name: "{{ backend_required_packages }}"

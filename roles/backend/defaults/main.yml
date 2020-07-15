@@ -1,4 +1,11 @@
 ---
+#
+# Autor: Davi Garcia <dvercill@redhat.com>
+# Data: 15-07-2020
+#
+# Variáveis padrão para implantação do backend
+#
+
 backend_deno_version: v1.2.0
 backend_required_packages:
 - unzip
