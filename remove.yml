@@ -23,7 +23,6 @@
     package:
       name:
       - nginx
-      - git
       - unzip
       state: absent
   - name: Uninstall dependencies (binaries)
@@ -34,13 +33,6 @@
     file:
       path: /etc/nginx
       state: absent
-  - name: Remove local Git checkouts
-    file:
-      path: "{{ item }}"
-      state: absent
-    with_items:
-    - /tmp/git-frontend
-    - /tmp/git-backend
   - name: Remove custom systemd service file
     file:
       path: /etc/systemd/system/deno-backend.service

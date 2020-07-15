@@ -21,11 +21,11 @@ jobs:
 
     - name: (API) Lint Deno code conventions
       run: deno fmt --check
-      working-directory: app-src/youtube-chapter-extractor/api
+      working-directory: app-src/api
 
     - name: (API) Execute Deno tests
       run: deno test --allow-all
-      working-directory: app-src/youtube-chapter-extractor/api
+      working-directory: app-src/api
 
   infraestructure:
     runs-on: ubuntu-latest
@@ -37,8 +37,5 @@ jobs:
       uses: ansible/ansible-lint-action@master
       with:
         targets: |
-          infra-src/main.yml
-        override-deps: |
-          ansible==2.9
-          ansible-lint==4.2
-        args: "-c infra-src/.ansible-lint"
+          main.yml
+          remove.yml
