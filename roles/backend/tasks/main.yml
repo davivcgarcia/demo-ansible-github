@@ -1,0 +1,35 @@
+---
+- name: Installing backend dependencies (packages)
+  package:
+    name: "{{ backend_required_packages }}"
+    state: present
+- name: Installing Deno runtime (binary)
+  unarchive:
+    src: "https://github.com/denoland/deno/releases/download/{{ backend_deno_version }}/deno-x86_64-unknown-linux-gnu.zip"
+    dest: /usr/local/bin
+    remote_src: yes
+  notify:
+  - Restart backend service
+- name: Copy backend artifacts to deployment directory
+  copy:
+    src: "{{ backend_src_path }}"
+    dest: "{{ backend_deploy_dest }}"
+  notify:
+  - Restart backend service
+- name: Configure the backend service for production
+  template:
+    src: env.j2
+    dest: "{{ backend_deploy_dest }}/.env"
+- name: Configure systemd as supervisor for backend service
+  template:
+    src: systemd-unit.j2
+    dest: /etc/systemd/system/deno-backend.service
+    owner: root
+    group: root
+  notify:
+    - Restart backend service
+- name: Backend service must be started on boot
+  systemd:
+    name: deno-backend.service
+    enabled: yes
+    daemon_reload: yes
