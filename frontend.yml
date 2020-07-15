@@ -8,30 +8,16 @@
 - name: Deploy application frontend service
   hosts: frontend
   become: yes
-  gather_facts: no
-  vars:
-    git_repo: https://github.com/davivcgarcia/demo-codigofonte.git
-    git_context: app-src/youtube-chapter-extractor/public/
-    git_dir: /tmp/git-frontend
   tasks:
   - name: Installing frontend dependencies (packages)
     package:
       name:
-      - git
       - nginx
       state: present
-  - name: Checkout frontend content from Git repository
-    git:
-      repo: "{{ git_repo }}"
-      dest: "{{ git_dir }}"
-      version: master
-    register: checkout
   - name: Copy frontend artifacts to deployment directory
     copy:
-      src: "{{ git_dir }}/{{ git_context }}"
+      src: app-src/public/
       dest: /srv/frontend
-      remote_src: yes
-    when: checkout.changed
   - name: Nginx service must be started on boot
     service:
       name: nginx

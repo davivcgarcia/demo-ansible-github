@@ -8,17 +8,12 @@
 - name: Deploy application backend service
   hosts: backend
   become: yes
-  gather_facts: no
   vars:
     deno_version: v1.2.0
-    git_repo: https://github.com/davivcgarcia/demo-codigofonte.git
-    git_context: app-src/youtube-chapter-extractor/api/
-    git_dir: /tmp/git-backend
   tasks:
   - name: Installing backend dependencies (packages)
     package:
       name:
-      - git
       - unzip
       state: present
   - name: Installing Deno runtime (binary)
@@ -28,18 +23,10 @@
       remote_src: yes
     notify:
     - Restart backend service
-  - name: Checkout backend content from Git repository
-    git:
-      repo: "{{ git_repo }}"
-      dest: "{{ git_dir }}"
-      version: master
-    register: checkout
   - name: Copy backend artifacts to deployment directory
     copy:
-      src: "{{ git_dir }}/{{ git_context }}"
+      src: app-src/api/
       dest: /srv/backend
-      remote_src: yes
-    when: checkout.changed
     notify:
     - Restart backend service
   - name: Configure the backend service for production
