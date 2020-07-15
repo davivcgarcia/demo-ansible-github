@@ -11,11 +11,12 @@ jobs:
     steps:
     - name: Git Checkout
       uses: actions/checkout@v2
+      with:
+        submodules: true
 
     - name: Run Ansible playbook
       uses: dawidd6/action-ansible-playbook@v2
       with:
-        directory: ./
         playbook: main.yml
         key: ${{secrets.SSH_PRIVATE_KEY}}
         inventory: ${{secrets.INVENTORY}}
