@@ -7,7 +7,7 @@ on:
 
 jobs:
    ansible:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Git Checkout
       uses: actions/checkout@v2

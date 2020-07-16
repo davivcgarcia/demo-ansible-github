@@ -1,0 +1,13 @@
+---
+#
+# Autor: Davi Garcia <dvercill@redhat.com>
+# Data: 15-07-2020
+#
+# Handlers da implantação do backend
+#
+
+- name: Restart backend service
+  systemd:
+    name: deno-backend.service
+    state: restarted
+    daemon_reload: yes
