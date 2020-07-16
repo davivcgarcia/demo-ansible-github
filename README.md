@@ -12,14 +12,13 @@ git clone https://github.com/davivcgarcia/demo-codigofonte.git --recursive
 
 ### Executando a Aplicação (api + public)
 
-Mais informações [aqui](app-src/README.md).
+Mais informações [aqui](https://github.com/davivcgarcia/youtube-chapter-extractor/blob/master/README.md).
 
 ### Executando Automação Ansible
 
 Para execução local do Ansible, primeiro crie seu inventário, seguindo o modelo abaixo:
 
 ```bash
-cd infra-src
 cat <<<EOF > inventory
 [frontend]
 servidor  ansible_host=192.168.2.30 ansible_user=usuario
@@ -32,6 +31,15 @@ EOF
 E depois execute o playbook de deployment:
 
 ```bash
-cd infra-src
 ansible-playbook -i inventory main.yml
 ```
+
+Caso precise descomissionar a aplicação, execute:
+
+```bash
+ansible-playbook -i inventory remove.yml
+```
+
+### Executando Workflow
+
+Esse repositório usa um [self-hosted runner]() baseado em `rhel-8`, mas poderia ser usado com o runner nativo (`ubuntu-latest`) sem problemas. A única coisa que precisa ser feita é a reversão do commit #087ef042e565bf0b34d1a0d8562a36a4b3810839.
