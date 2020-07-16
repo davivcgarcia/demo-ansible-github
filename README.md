@@ -42,4 +42,4 @@ ansible-playbook -i inventory remove.yml
 
 ### Executando Workflow
 
-Esse repositório usa um [self-hosted runner]() baseado em `rhel-8`, mas poderia ser usado com o runner nativo (`ubuntu-latest`) sem problemas. A única coisa que precisa ser feita é a reversão do commit #087ef042e565bf0b34d1a0d8562a36a4b3810839.
+Esse repositório usa um [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners) baseado em `rhel-8`, mas poderia ser usado com o runner nativo (`ubuntu-latest`) sem problemas. A única coisa que precisa ser feita é a reversão do commit [087ef04](https://github.com/davivcgarcia/demo-codigofonte/commit/087ef042e565bf0b34d1a0d8562a36a4b3810839).
