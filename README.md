@@ -1,13 +1,15 @@
-# Demonstração para Código Fonte TV
+# Demonstração de Ansible Engine (CLI) com GitHub Actions
 
-Esse reposiório contém os artefatos usados na demonstração de Ansible Engine (Ansible CLI) como ferramenta de CD complementar ao Ansible Tower (AWX) e GitHub Actions para o vídeo da Código Fonte TV (YouTube).
+Esse repositório contém os artefatos usados na demonstração de Ansible Engine (Ansible CLI) como camada de automação de deployment (Continuous Deployment - CD) integrado a um fluxo de GitHub Actions.
+
+Para exemplificar a aplicação, estamos usando um fork do código desenvolvido pela [Código Fonte TV](https://www.youtube.com/user/codigofontetv) no [episódio #34](https://www.youtube.com/watch?v=ooLEpm4CXBY) escrito em JavaScript (frontend) e Deno (backend).
 
 ## Instruções
 
 Como esse repositório faz uso de Git Submodules, ao clonar você precisa usar:
 
 ```bash
-git clone https://github.com/davivcgarcia/demo-codigofonte.git --recursive
+git clone https://github.com/davivcgarcia/demo-ansible-github.git --recursive
 ```
 
 ### Executando a Aplicação (api + public)
@@ -42,4 +44,4 @@ ansible-playbook -i inventory remove.yml
 
 ### Executando Workflow
 
-Esse repositório usa um [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners) baseado em `rhel-8`, mas poderia ser usado com o runner nativo (`ubuntu-latest`) sem problemas. A única coisa que precisa ser feita é a reversão do commit [087ef04](https://github.com/davivcgarcia/demo-codigofonte/commit/087ef042e565bf0b34d1a0d8562a36a4b3810839).
+Ao clonar esse repositório é esperado que os fluxos funcionem sem nenhum tipo de modificação. Caso tenha alguma dificuldade, por favor reporte problema que eu tento ajudar! =D

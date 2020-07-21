@@ -7,17 +7,17 @@ on:
 
 jobs:
   application:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - name: Git Checkout
       uses: actions/checkout@v2
       with:
         submodules: true
 
-    # - name: (API) Setup Deno environment
-    #   uses: denolib/setup-deno@v2
-    #   with:
-    #     deno-version: v1.x
+    - name: (API) Setup Deno environment
+      uses: denolib/setup-deno@v2
+      with:
+        deno-version: v1.x
 
     - name: (API) Lint Deno code conventions
       run: deno fmt --check
@@ -28,7 +28,7 @@ jobs:
       working-directory: app-src/api
 
   infraestructure:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - name: Git Checkout
       uses: actions/checkout@v2
