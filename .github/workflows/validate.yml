@@ -7,7 +7,7 @@ on:
 
 jobs:
   application:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - name: Git Checkout
       uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
       working-directory: app-src/api
 
   infraestructure:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - name: Git Checkout
       uses: actions/checkout@v2
