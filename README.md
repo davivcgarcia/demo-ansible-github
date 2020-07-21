@@ -44,4 +44,9 @@ ansible-playbook -i inventory remove.yml
 
 ### Executando Workflow
 
-Ao clonar esse repositório é esperado que os fluxos funcionem sem nenhum tipo de modificação. Caso tenha alguma dificuldade, por favor reporte problema que eu tento ajudar! =D
+Ao clonar esse repositório é esperado que os fluxos de Continuous Integration (CI) funcionem sem nenhum tipo de modificação. Já para o de Continuous Deployment (CD), basta configurar os seguintes secrets:
+
+- **SSH_PRIVATE_KEY**: Conteúdo da chave privada de SSH para acessar o servidor externo.
+- **INVENTORY**: Conteúdo do arquivo de inventário (mesmo formato usado na execução manual)
+
+Caso tenha alguma dificuldade, por favor reporte problema que eu tento ajudar! =D
