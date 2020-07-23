@@ -1,0 +1,12 @@
+---
+#
+# Autor: Davi Garcia <dvercill@redhat.com>
+# Data: 23-07-2020
+#
+# Handlers da implantação do frontend
+#
+
+- name: Restart Nginx service
+  service:
+    name: nginx
+    state: restarted
