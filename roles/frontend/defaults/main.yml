@@ -1,0 +1,12 @@
+---
+#
+# Autor: Davi Garcia <dvercill@redhat.com>
+# Data: 23-07-2020
+#
+# Variáveis padrão para implantação do frontend
+#
+
+frontend_required_packages:
+- nginx
+frontend_deploy_dest: /srv/frontend
+frontend_src_path: app-src/public/
