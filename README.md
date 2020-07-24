@@ -30,16 +30,17 @@ servidor  ansible_host=192.168.2.30 ansible_user=usuario
 EOF
 ```
 
-E depois execute o playbook de deployment:
+E depois execute o playbook de implantação e depois o de validação:
 
 ```bash
-ansible-playbook -i inventory main.yml
+ansible-playbook -i inventory playbook_deploy.yml
+ansible-playbook -i inventory playbook_verify.yml
 ```
 
 Caso precise descomissionar a aplicação, execute:
 
 ```bash
-ansible-playbook -i inventory remove.yml
+ansible-playbook -i inventory playbook_remove.yml
 ```
 
 ### Executando Workflow

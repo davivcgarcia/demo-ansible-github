@@ -27,6 +27,8 @@
   template:
     src: env.j2
     dest: "{{ backend_deploy_dest }}/.env"
+  notify:
+  - Restart backend service
 - name: Configure systemd as supervisor for backend service
   template:
     src: systemd-unit.j2
@@ -34,7 +36,7 @@
     owner: root
     group: root
   notify:
-    - Restart backend service
+  - Restart backend service
 - name: Backend service must be started on boot
   systemd:
     name: deno-backend.service
